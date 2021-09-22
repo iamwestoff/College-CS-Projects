@@ -1,0 +1,152 @@
+
+
+This lab asks you to create a container class that holds integers called a SafeArrayInt. 
+The class is used to hold an array of integers. When creating an object of type SafeArrayInt 
+make the underlying array's initial size 10.
+
+Add two methods to the class:
+
+void push_back(int newVal);
+int pop_back();
+
+These methods will add and remove an integer from the end of the underlying array.
+ When calling push_back(), if the array fills up completely then you should double it. 
+ When using pop_back(), if the array ever gets reduced to one quarter full then cut the size 
+ of the array in half (however, never go below 10 elements).
+
+The SafeArrayInt class should be able to tell you how many elements are currently 
+being used with a method called size(). This may be different than the size of the underlying 
+array.
+
+The SafeArrayInt class should contain a method called 'at' that returns a reference to an 
+element in the array.
+
+int& at(int pos); //returns a reference or alias to an int
+
+To return a reference means that the user can change the value at that location in the 
+array on the heap without using pointer notation and they cannot do pointer arithmetic.
+
+SafeArrayInt s;
+
+s.push_back(50);
+s.push_back(40);
+s.push_back(30);
+s.push_back(20);
+
+for(int i = 0;i < s.size();i++)
+{
+    s.at(i) = i + 100; //can use on the left of an =
+    s.at(i) = s.at(i) * s.at(i); //can use in an expression
+}
+
+Overload the [] operator so that the SafeArrayInt can be used like a plain old array:
+
+int& SafeArrayInt::operator[](int pos)
+{
+    return at(pos); //s[7] = 10; compiler turns this into s.at(7) = 10; because of operator overloading
+}
+
+If the user goes outside the bounds of the array the program should gracefully exit. 
+Display an error message and then halt the program. This code
+
+SafeArrayInt s;
+
+s.push_back(50);
+s.push_back(40);
+s.push_back(30);
+s.push_back(20);
+
+for(int i = 0;i < 20;i++)
+{
+    s.at(i) = i + 100;
+}
+
+should produce the following output and then kill the program:
+
+Tried to access an element outside the bounds...
+Press any key to continue...
+
+You can use system("pause") to pause before the program ends (for windows people only) and 
+exit(0) to kill the program.
+
+Lastly, make sure that you delete any memory you have acquired from the heap. A destructor 
+is a special method that will be called whenever an object falls out of scope. Use the 
+destructor to delete the memory for the array. A destructor looks similar to a constructor:
+
+~SafeArrayInt();
+
+Destructors never take parameters because they are called implicitly when an ending curly 
+brace is encountered. Include a cout in the destructor to prove to yourself that it is actually 
+being called.
+
+Here is a main() that tests the functionality of the SafeArrayInt:
+
+#include <iostream>
+#include "SafeArrayInt.h"
+
+using namespace std;
+
+int main()
+{
+    //create a safe array
+    SafeArrayInt s1;
+
+    //add 3 items
+    s1.push_back(10);
+    s1.push_back(20);
+    s1.push_back(30);
+    
+    //print the 3 items
+    cout<<"Printing all items:"<<endl;
+    for(int i = 0;i < s1.size();i++)
+    {
+        cout<<"Index: "<<i<<" Value: "<<s1.at(i)<<endl;
+    }
+    cout<<endl;
+
+    //update the first two with at()
+    s1.at(0) = 50;
+    s1.at(1) = 40;
+
+    cout<<"Printing all items:"<<endl;
+    for(int i = 0;i < s1.size();i++)
+    {
+        cout<<"Index: "<<i<<" Value: "<<s1.at(i)<<endl;
+    }
+    cout<<endl;
+
+    //adding 100 random numbers
+    for(int i = 0;i < 100;i++)
+    {
+        s1.push_back(rand());
+    }
+
+    cout<<"Printing all items:"<<endl;
+    for(int i = 0;i < s1.size();i++)
+    {
+        cout<<"Index: "<<i<<" Value: "<<s1.at(i)<<endl;
+    }
+    cout<<endl;
+
+    //removing the last 100 random numbers
+    for(int i = 0;i < 100;i++)
+    {
+        cout<<"Removing: "<<s1.pop_back()<<endl;
+    }
+    cout<<endl;
+
+    cout<<"Printing all items:"<<endl;
+    for(int i = 0;i < s1.size();i++)
+    {
+        cout<<"Index: "<<i<<" Value: "<<s1.at(i)<<endl;
+    }
+    cout<<endl;
+
+    //going outside the bounds, program should end
+    s1.at(3) = 40;
+    cout<<"You should not see this on the screen!"<<endl;
+    
+    return 0;
+}
+
+ To be clear, you may not use the built-in vector class in this lab.
