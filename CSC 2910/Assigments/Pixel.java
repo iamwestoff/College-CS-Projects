@@ -33,12 +33,7 @@ class Pixel {
 
     //setter methods
         //following setter values should range from 0-255
-    public void setRed(int r){
-        red = r;
-    }//end setRed
-
-    public void setGreen(int g){
-        green = g;
+    public void setRed(int r){ 
     }//end setGreen
 
     public void setBlue(int b){

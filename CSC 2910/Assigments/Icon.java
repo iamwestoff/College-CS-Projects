@@ -25,6 +25,25 @@ class Icon
         blue = b;
     }
 
+    public void checkInput(){
+        if(!(red >= 0 && red <=255)){
+            JOptionPane.showMessageDialog(null, "Oops! Looks like one of your numbers is not between 0-255\nPlease try again!", "**Detected Incorrect Input**", JOptionPane.PLAIN_MESSAGE);
+            takeUserInput();
+        }
+        else if (!(green >= 0 && green <=255)){
+            JOptionPane.showMessageDialog(null, "Oops! Looks like one of your numbers is not between 0-255\nPlease try again!", "**Detected Incorrect Input**", JOptionPane.PLAIN_MESSAGE);
+            takeUserInput();
+        }
+        else if(!(blue >= 0 && blue <=255)){
+            JOptionPane.showMessageDialog(null, "Oops! Looks like one of your numbers is not between 0-255\nPlease try again!", "**Detected Incorrect Input**", JOptionPane.PLAIN_MESSAGE);
+            takeUserInput();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "r: " + red + "\ng: " + green + "\nb: " + blue, "Your RGB Inputs for the current pixel", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+
+
     public void takeUserInput()
     {
         String redInput = JOptionPane.showInputDialog("Input you value for red");
@@ -35,17 +54,13 @@ class Icon
         green = Integer.parseInt(greenInput);
         blue = Integer.parseInt(blueInput);
 
-        if((red < 0 || red >= 255) && (green < 0 || green >= 255) && (blue < 0 || blue >= 255)){
-            JOptionPane.showMessageDialog(null, "Oops! Looks like one of your numbers is not between 0-255\nPlease try again!", "**Detected Incorrect Input**", JOptionPane.PLAIN_MESSAGE);
-            takeUserInput();
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "r: " + red + "\ng: " + green + "\nb: " + blue, "Your RGB Inputs for the current pixel", JOptionPane.PLAIN_MESSAGE);
-        }
+        checkInput();
     }
 
     
-    //setPixel(row,col,r,g,b);
+    public void setPixel(int row, int col, int r, int g, int b){
+        takeUserInput(r, g, b);
+    }
 
     //System.out.println(icon.toString());
 }
