@@ -4,23 +4,29 @@ This assignment asks you to write a program that will read a sequence of words f
 and store them in a dynamic array of strings. Use the word 'quit' as the word that terminates the
 input. Print the words back to the screen in the order in which they were entered each on its own line.
 Do not store the same word twice
+
 Up until now the size of an array has been determined at compile time, now that you know about
 pointers and about the keyword 'new', write a program which is not restricted to selecting an upper
 bound at compile time for the number of words which can be read in.
+
 One way to do this is to use 'new' to create arrays of strings on the fly. Each time an array fills up,
 dynamically create an array which is twice as large, copy over the contents of the existing array to the
 new array, and continue (remember to delete the original array). Start with an array of 5 elements.
+
 For simplicity you do not need to create any classes for this assignment although creating at least one
 function might be a good idea (I might create a Search() function that checks to see if a word has
 already been stored on the array).
+
 Here is an example of the output:
+
+``` output
 Enter in some text and end with the word quit:
 This assignment asks you to write a program that will read a sequence of words from the keyboard
 and store them in a dynamic array of strings. Use the word 'quit' as the word that terminates the
 input. Print the words back to the screen in the order in which they were entered each on its own line.
 Do not store the same word twice. quit
 
-``` output
+output
 Doubling Array from 5 to 10
 Doubling Array from 10 to 20
 Doubling Array from 20 to 40
@@ -74,7 +80,8 @@ Doubling Array from 40 to 80
 47. Twice.
 ```
 
-STARTING CODE
+**STARTING CODE**
+
 ``` C++
 #include <iostream>
 #include <string>
