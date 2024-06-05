@@ -32,6 +32,7 @@ and the value is the frequency in which it follows the ngram in the provided tex
 An n-gram is a contiguous sequence of n items (or words) from a given text or data. In
 the context of natural language processing (NLP) and language modeling, n-grams are
 commonly used to represent and analyze the statistical properties of text data.
+
 For example, in the sentence "The quick brown fox", the 2-grams (also known as
 bigrams) would be: "The quick", "quick brown", and "brown fox". The 3-grams (also
 known as trigrams) would be: "The quick brown", "quick brown fox".
