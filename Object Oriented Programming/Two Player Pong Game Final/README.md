@@ -25,7 +25,7 @@ Past examples of final project programs include:
 
 ---
 ## Program of Choice Description
-Using the state pattern, decorator pattern, and Observer pattern, I have created a two player pong Java GUI based game that aims to apply everything learned throughout the course, while adding a fun twist to the experience.
+Using the State pattern, Decorator pattern, and Observer pattern, I have created a two player pong Java GUI based game that aims to apply everything learned throughout the course, while adding a fun twist to the experience.
 
 #### Some Errors Encountered
 - Decorators applying but not applying to ball movement correctly
